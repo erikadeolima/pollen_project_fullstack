@@ -11,7 +11,7 @@ function MinhaConta() {
 
     useEffect(() => {
         getPollenBalance();
-    }, []);
+    }, [pollenBalance]);
 
     return (
         <div className='mainContainer minha_conta'>
