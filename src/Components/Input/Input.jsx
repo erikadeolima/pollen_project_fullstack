@@ -1,10 +1,12 @@
 import React from "react";
 import './Input.css';
 
-function Input(quantity) {
-    return (
-        <input className="inputFormsSm" type="text" disabled={true} value={quantity.quantity}></input>
-    );
+function Input(props) {
+
+    if (props.type !== "textarea") {
+        return (< input className="inputFormsSm" id={props.id} type={props.type} name={props.name} disabled={props.disabled} value={props.quantity} />)
+    }
+    return (<textarea className="inputFormsSm" id={props.id} type={props.type} name={props.name} disabled={props.disabled} value={props.quantity}></textarea>)
 }
 
 export default Input;

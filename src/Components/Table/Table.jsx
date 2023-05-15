@@ -12,13 +12,13 @@ function Table(props) {
     if (props.page === "minha_conta") {
         return (
             <div>
-                <table className='tableCarrinho'>
+                <table className='table_account'>
                     <thead>
                         <tr>
-                            <td>Data do Pedido</td>
-                            <td>Produtos</td>
-                            <td>Total do Pedido</td>
-                            <td>Status do Pedido</td>
+                            <td><strong>Data do Pedido</strong></td>
+                            <td><strong>Produtos</strong></td>
+                            <td><strong>Total do Pedido</strong></td>
+                            <td><strong>Status do Pedido</strong></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,9 +28,8 @@ function Table(props) {
                                     <td>{order.dateOrder}</td>
                                     {order.products
                                         .map((product) => {
-                                            return (<tr key={product.id}>
-                                                <td>{`${product.name}`}</td> 
-                                            </tr>);
+                                            return (
+                                                <p key={product.id}>({product.quantity}){product.name}</p>)
                                         })}
                                     <td>{order.total}</td>
                                     <td>{order.status}</td>

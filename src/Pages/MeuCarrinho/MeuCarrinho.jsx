@@ -4,7 +4,6 @@ import './MeuCarrinho.css';
 import CardCartProduct from '../../Components/CardCartProduct/CardCartProduct';
 import FormEntrega from '../../Components/FormEntrega/FormEntrega';
 import Line from '../../Components/Line/Line';
-import Input from '../../Components/Input/Input';
 import storage from '../../Context/Context';
 
 function MeuCarrinho() {

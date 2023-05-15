@@ -19,24 +19,6 @@
     font-size: 25px;
 }
 
-.table {
-    display: flex;
-    width: 100%;
-    height: 248px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 2, 0.25);
-    border-radius: 25px;
-    border-spacing: 25px;
-  }
-
-td {
-    padding-top: 10px;
-    padding-bottom: 0px;
-    padding-left: 150px;
-    padding-right: 150px;
-    align-items: center;
-}
-
 .transfira {
     display: flex;
     flex-direction: column;
@@ -46,20 +28,43 @@ td {
     margin-top: 32px;
 }
 
-.meuinput{
+.transfer-data{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.emailPresente{
+    display: flex;
+    flex: left;
+    width: 55%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.presente{
-    display: flex;
-    flex-direction: column;
-    padding-right: 6rem;
+.emailPresente label{
+    padding: 20px 10px 20px 30px;
 }
 
 .polensEnviar{
     display: flex;
-    flex-direction: column;
+    flex: right;
+    width: 35%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.polensEnviar label{
+    padding: 20px 30px;
+}
+
+.menssagem-texto{
+    display: flex;
+    flex: right;
+    width: 100%;
+}
+
+.menssagem-texto label{
+    padding: 20px 30px;
 }

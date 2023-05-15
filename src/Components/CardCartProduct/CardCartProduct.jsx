@@ -15,10 +15,9 @@ function CardCartProduct(props) {
         <p>Preço Unitário: {props.pollens} pollens</p>
         <label>Quantidade:</label>
         <br />
-        <Input quantity={props.quantity} />
+        <Input quantity={props.quantity} disabled={true} id="quantity" />
         <p>Subtotal: {props.subTotal} pollens</p>
       </div>
-
     </div>
   );
 }
