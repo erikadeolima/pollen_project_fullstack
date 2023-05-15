@@ -54,10 +54,7 @@ function FormEntrega() {
             <input className='inputForms' type="text" placeholder='Estado'
                 {...register("estado")}
             />
-            <PrimaryButton
-                btn="Finalizar" 
-                title="meu_carrinho"
-            />
+
         </form>
     );
 }
