@@ -11,7 +11,7 @@ function MeuCarrinho() {
     const [modoEntrega, setModoEntrega] = useState('');
     const storageCart = JSON.parse(localStorage.getItem('cart'));
     const [cartItens, setCartItens] = useState(storageCart);
-    const { setTotal } = useContext(storage);
+    const { total, setTotal } = useContext(storage);
 
     const handleDesejaReceberEmCasaChange = (e) => {
         const value = e.target.value;
@@ -79,14 +79,13 @@ function MeuCarrinho() {
                     </div>
                     {componnent}
                     <PrimaryButton
-                        btn="Finalizar"
+                        btn={`Total: ${total} pollens   -  Finalizar`}
                         title="meu_carrinho"
                     />
                 </div>
             }
         </div >
     )
-
 };
 
 export default MeuCarrinho;
