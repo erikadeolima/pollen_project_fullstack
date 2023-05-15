@@ -5,7 +5,7 @@ import './CardCartProduct.css';
 function CardCartProduct(props) {
   return (
     <div className="cart-product-container">
-      <div className="productPhoto">
+      <div className="cart-product-photo">
         <img src={props.src} alt="Foto do Produto" />
       </div>
       <div className="cart-product-info">

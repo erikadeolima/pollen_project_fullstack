@@ -9,7 +9,7 @@
   font-size: 2em;
 }
 
-.productPhoto {
+.cart-product-photo {
   width: 400px;
   height: 400px;
   box-shadow: 6px 6px 12px #bebebe,
@@ -17,9 +17,12 @@
   border-radius: 24px;
   margin-right: 3em;
   float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.productPhoto img {
+.cart-product-photo img {
   width: 80%;
   height: 80%;
 }
