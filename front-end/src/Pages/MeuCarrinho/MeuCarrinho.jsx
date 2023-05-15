@@ -5,15 +5,17 @@ import CardCartProduct from '../../Components/CardCartProduct/CardCartProduct';
 import FormEntrega from '../../Components/FormEntrega/FormEntrega';
 import Line from '../../Components/Line/Line';
 import storage from '../../Context/Context';
+import PrimaryButton from '../../Components/PrimaryButton/PrimaryButton';
 
 function MeuCarrinho() {
-    const [desejaReceberEmCasa, setDesejaReceberEmCasa] = useState(false);
+    const [modoEntrega, setModoEntrega] = useState('');
     const storageCart = JSON.parse(localStorage.getItem('cart'));
     const [cartItens, setCartItens] = useState(storageCart);
     const { setTotal } = useContext(storage);
 
     const handleDesejaReceberEmCasaChange = (e) => {
-        setDesejaReceberEmCasa(e.target.checked);
+        const value = e.target.value;
+        setModoEntrega(value);
     };
 
     useEffect(() => {
@@ -28,6 +30,13 @@ function MeuCarrinho() {
             setTotal(totalValue);
         }
     }, [cartItens, setTotal, storageCart]);
+
+    let componnent;
+    if (modoEntrega === "em_casa") {
+        componnent = <FormEntrega />
+    } else {
+        componnent = <div></div>
+    };
 
     return (
         <div className=' mainContainer'>
@@ -52,19 +61,27 @@ function MeuCarrinho() {
                     <Line />
                     <div className='caixa-selecao'>
                         <h2>Envio</h2>
-                        <input type="radio" name="envio" value="retirada" />
+                        <input
+                            type="radio"
+                            name="envio"
+                            value={"no_bees"}
+                            onChange={handleDesejaReceberEmCasaChange}
+                        />
                         Desejo Retirar no escritório do Bees
                         <br />
                         <input
                             type="radio"
                             name="envio"
-                            value="receber_em_casa"
-                            checked={desejaReceberEmCasa}
+                            value={"em_casa"}
                             onChange={handleDesejaReceberEmCasaChange}
                         />
                         Desejo Receber em Casa
                     </div>
-                    {desejaReceberEmCasa && <FormEntrega />}
+                    {componnent}
+                    <PrimaryButton
+                        btn="Finalizar"
+                        title="meu_carrinho"
+                    />
                 </div>
             }
         </div >
