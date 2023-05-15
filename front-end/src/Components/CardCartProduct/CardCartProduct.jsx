@@ -1,5 +1,4 @@
 import React from "react";
-import Line from '../Line/Line';
 import Input from '../Input/Input';
 import './CardCartProduct.css';
 
