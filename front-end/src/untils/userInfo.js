@@ -5,7 +5,7 @@ const userInfo = {
     {
       id: 1,
       dateOrder: "17/04/2023",
-      products: [{ id: 3, name: "Copo térmico de inox 500ml", src: "/Produtos/Copo_Termico_Inox.png", pollens: 70, quantity: 1, subTotal: 70 }, { "id": 1, name: "Agenda com caneta Pollen", src: "/Produtos/agenda.jpg", pollens: 70, quantity: 1, subTotal: 70 }],
+      products: [{ id: 3, name: "Copo térmico de inox 500ml", src: "/Produtos/Copo_Termico_Inox.png", pollens: 70, quantity: 1, subTotal: 70 }, { id: 1, name: "Agenda com caneta Pollen", src: "/Produtos/agenda.jpg", pollens: 70, quantity: 1, subTotal: 70 }],
       total: 140,
       status: "Entregue - Retirada no BEES"
     },
