@@ -17,9 +17,9 @@ function App() {
           <Header />
           <Routes>
             <Route path='/' element={<Homepage />} />
-            <Route path='/MeuCarrinho' element={<MeuCarrinho />} />
-            <Route path='/MinhaConta' element={<MinhaConta />} />
-            <Route path='/Sobre' element={<Sobre />} />
+            <Route path='/checkout' element={<MeuCarrinho />} />
+            <Route path='/myaccount' element={<MinhaConta />} />
+            <Route path='/about' element={<Sobre />} />
           </Routes>
         </Router>
       </div>
