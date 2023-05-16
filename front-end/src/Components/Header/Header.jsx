@@ -6,7 +6,7 @@ import logo from '../../Assets/Logo/logo-polen.png';
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
 function Header() {
-    return(
+    return (
         <header>
             <div>
                 <Link to="/">
@@ -17,16 +17,16 @@ function Header() {
                 </Link>
             </div>
             <div className='menu-itens'>
-                <Link to="/Sobre" className='removeStyle'>
+                <Link to="/about" className='removeStyle'>
                     <p>sobre nós</p>
                 </Link>
-                <Link to="/MinhaConta" className='removeStyle'>
+                <Link to="/myaccount" className='removeStyle'>
                     <p>minha conta</p>
                 </Link>
-                <Link to="/MeuCarrinho" className='removeStyle'>
+                <Link to="/checkout" className='removeStyle'>
                     <p>meu carrinho</p>
                 </Link>
-            </div>        
+            </div>
         </header>
     );
 }
