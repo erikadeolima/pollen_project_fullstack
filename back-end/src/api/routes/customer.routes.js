@@ -1,13 +1,9 @@
 const { Router } = require('express');
 
-/* const customerController = require('../controllers/customer.controller'); */
-/* const { authorizationToken } = require('../middlewares/authToken'); */
+const customerController = require('../controller/customer.controller');
 
 const customerRoute = Router();
 
-customerRoute.get('/', () => console.log("homepage"));
-customerRoute.get('/checkout', () => console.log("checkout"));
-customerRoute.get('/myaccount', () => console.log("myaccount"));
-customerRoute.post('/about', () => console.log("about"));
+customerRoute.get('/myaccount/', customerController.getPollenBalance);
 
 module.exports = customerRoute;
