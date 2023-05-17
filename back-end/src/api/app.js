@@ -11,7 +11,7 @@ app.use(cors());
 
 app.use(express.static('public'));
 
-app.use('/customer', routes.customer);
+app.use('/', routes.customer);
 
 app.use(errorMiddleware);
 
