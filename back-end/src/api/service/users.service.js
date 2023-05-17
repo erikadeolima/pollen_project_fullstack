@@ -20,7 +20,11 @@ const getPollenBalance = async (id) => {
 
 const updatePollenBalance = async (id, balance) => {
   const newBallance = await User.update({ pollenBalance: balance }, { where: { id } });
-  console.log(newBallance)
+  const userBallance = getPollenBalance(id);
+  if (!newBallance) {
+    throw errorGenerate(404, 'Not found');
+  }
+  return userBallance;
 };
 
 module.exports = {
