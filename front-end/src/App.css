@@ -11,3 +11,51 @@
 .removeStyle {
     text-decoration: none;
 }
+
+.inputFormsSm {
+    border: none;
+    box-shadow: inset 2px 5px 10px rgb(228, 224, 224);
+    border-radius: 24px;
+    color: #a7a5a5;
+    padding: 20px 30px;
+    font-size: 1em;
+    margin: 1em 1em 1em 0;
+}
+
+.inputFormsSm:focus {
+    color: #000;
+}
+
+#quantity {
+    width: 70px;
+}
+
+#emailPresente{
+    width: 300px;
+}
+
+#quantidadePólens {
+    width: 70px;
+}
+
+#message{
+    height: 100px;
+    width: 100%;
+    resize: none;
+    overflow: hidden;
+}
+
+.primaryButton {
+    display: inline-block;
+}
+
+.primaryButton button {
+    border: none;
+    border-radius: 20px;
+    background-color: #ffff00;
+    color: black;
+    font-size: 16px;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }

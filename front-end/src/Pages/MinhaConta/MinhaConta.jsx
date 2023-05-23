@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MinhaConta.css';
 import Line from '../../Components/Line/Line';
 import storage from '../../Context/Context';
@@ -6,18 +7,33 @@ import PrimaryButton from '../../Components/PrimaryButton/PrimaryButton';
 import Input from '../../Components/Input/Input';
 import Table from '../../Components/Table/Table';
 
-function MinhaConta() {
-    const { pollenBalance, getPollenBalance } = useContext(storage);
+function MinhaConta({ history }) {
+    const [pollenBalanceValue, setPollenBalance] = useState(0);
+    const { getUserInfo } = useContext(storage);
+
+    let navigate = useNavigate();
 
     useEffect(() => {
-        getPollenBalance();
-    }, [pollenBalance]);
+        const userInfo = getUserInfo();
+        console.log(userInfo)
+        const { pollenBalance } = userInfo;
+        setPollenBalance(pollenBalance);
+    }, [pollenBalanceValue, setPollenBalance]);
+
+    useEffect(() => {
+        const user = getUserInfo();
+        if (user) {
+            navigate('/myaccount');
+        } else {
+            navigate('/');
+        }
+    }, []);
 
     return (
         <div className='mainContainer minha_conta'>
             <div className='titulo'>
                 <h3 className='tituloPolens'>
-                    {`Você tem ${pollenBalance} pollens acumulados.`}
+                    {`Você tem ${pollenBalanceValue} pollens acumulados.`}
                 </h3>
             </div>
             <Line />

@@ -4,6 +4,7 @@ import Provider from './Context/Provider';
 
 import Header from './Components/Header/Header';
 
+import Login from './Pages/Login/Login';
 import Homepage from './Pages/Homepage/Homepage';
 import MeuCarrinho from './Pages/MeuCarrinho/MeuCarrinho';
 import MinhaConta from './Pages/MinhaConta/MinhaConta';
@@ -16,7 +17,8 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path='/' element={<Homepage />} />
+            <Route path='/' element={<Login />} />
+            <Route path='/home' element={<Homepage />} />
             <Route path='/checkout' element={<MeuCarrinho />} />
             <Route path='/myaccount' element={<MinhaConta />} />
             <Route path='/about' element={<Sobre />} />

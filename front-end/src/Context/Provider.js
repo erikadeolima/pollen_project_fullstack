@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import storage from './Context';
 import userInfo from '../untils/userInfo';
-import productsInfo from '../untils/productsInfo';
+import { requestData } from '../api/requests';
 
 function Provider({ children }) {
 
@@ -12,14 +12,9 @@ function Provider({ children }) {
   const [total, setTotal] = useState(0);
   const [cart, setCart] = useState([]);
 
-  const getUserName = () => {
-    const user = userInfo.userName;
-    setUserName(user);
-  };
-
-  const getPollenBalance = () => {
-    const pollens = userInfo.pollenBalance;
-    setPollenBalance(pollens);
+  const getUserInfo = () => {
+    const user = JSON.parse(localStorage.getItem('userInfo'));
+    return user;
   };
 
   const getOrderHistory = () => {
@@ -27,8 +22,8 @@ function Provider({ children }) {
     setOrderHistory(orderHistory);
   };
 
-  const getProducts = () => {
-    const products = productsInfo;
+  const getProducts = async () => {
+    const products = await requestData('/home');
     setProducts(products);
   };
   const getCartItem = () => {
@@ -38,6 +33,10 @@ function Provider({ children }) {
 
   const saveCartItem = (item) => {
     localStorage.setItem('cart', JSON.stringify(item));
+  };
+
+  const setUserInfo = (userInfo) => {
+    localStorage.setItem('userInfo', JSON.stringify(userInfo));
   };
 
   const newItem = (item) => {
@@ -70,8 +69,7 @@ function Provider({ children }) {
     userName,
     pollenBalance,
     orderHistory,
-    getUserName,
-    getPollenBalance,
+    getUserInfo,
     getOrderHistory,
     getProducts,
     products,
@@ -80,7 +78,8 @@ function Provider({ children }) {
     cart,
     setCart,
     newItem,
-    getCartItem
+    getCartItem,
+    setUserInfo
   };
 
   return (

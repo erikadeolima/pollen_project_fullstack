@@ -20,7 +20,7 @@ function Homepage() {
                         key={product.id}
                         id={product.id} na
                         name={product.name}
-                        src={product.src}
+                        src={product.url_image}
                         pollens={product.pollens}
                     />))
                 }

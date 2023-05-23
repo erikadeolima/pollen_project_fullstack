@@ -9,10 +9,10 @@ function Header() {
     return (
         <header>
             <div>
-                <Link to="/">
+                <Link to="/home">
                     <img className="logo" src={logo} alt="Logo do site. Uma moeda amarela com a letra P e algumas abelhas" />
                 </Link>
-                <Link to="/" className='removeStyle'>
+                <Link to="/home" className='removeStyle'>
                     <h1 className='nameSiteHeader'>PollenPoints</h1>
                 </Link>
             </div>
@@ -25,6 +25,11 @@ function Header() {
                 </Link>
                 <Link to="/checkout" className='removeStyle'>
                     <p>meu carrinho</p>
+                </Link>
+                <Link to="/"
+                    onClick={() => localStorage.clear()}
+                    className='removeStyle'>
+                    <p>Logout</p>
                 </Link>
             </div>
         </header>
