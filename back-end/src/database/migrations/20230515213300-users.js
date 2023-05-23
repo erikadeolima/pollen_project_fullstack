@@ -20,15 +20,15 @@ module.exports = {
         allowNull: false,
       },
       // I will be implement in another time
-      /* email: {
-       type: Sequelize.STRING,
-       allowNull: false,
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       password: {
-       type: Sequelize.STRING,
-       allowNull: false,
+        type: Sequelize.STRING,
+        allowNull: false,
       },
-      role: {
+      /* role: {
        type: Sequelize.STRING,
        allowNull: false,
       } */

@@ -7,9 +7,9 @@ module.exports = {
         id: 1,
         name: 'Sicília Pierre',
         pollen_balance: 10000,
-        /* email: 'adm@deliveryapp.com',
-        password: 'a4c86edecc5aee06eff8fdeda69e0d04',
-        role: 'administrator', */
+        email: 'pierre.sicilia@tester.com',
+        password: '1034d5f5bf8a0e7f10040d3eefee3e7a', /* AfroReact2023 */
+        /* role: 'administrator',  */
       }
     ], { timestamps: false });
   },

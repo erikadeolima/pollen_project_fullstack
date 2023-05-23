@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     pollenBalance: DataTypes.INTEGER,
     // I will be implement in another time
-    // email: DataTypes.STRING,
-    // password: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
     // role: DataTypes.STRING,
   },
     {

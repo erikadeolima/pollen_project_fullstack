@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const { User } = require('../../database/models');
 const errorGenerate = require('../helper/errorGenerate');
+const { checkPassword } = require('../helpers/bycrypt');
 
 const findUserByName = async (name) => {
   const user = await User.findOne({ where: { name } });
@@ -10,12 +11,13 @@ const findUserByName = async (name) => {
   return user.id;
 };
 
-const getPollenBalance = async (id) => {
-  const user = await User.findOne({ where: { id } });
-  if (!user) {
+const requestLogin = async (email, password) => {
+  const user = await User.findOne({ where: { email } });
+  if (!user || !checkPassword(password, user.password)) {
     throw errorGenerate(404, 'Not found');
   }
-  return user.pollenBalance;
+  const { id, name, pollenBalance } = user;
+  return { id, name, pollenBalance };
 };
 
 const updatePollenBalance = async (id, balance) => {
@@ -30,5 +32,5 @@ const updatePollenBalance = async (id, balance) => {
 module.exports = {
   findUserByName,
   updatePollenBalance,
-  getPollenBalance
+  requestLogin
 };

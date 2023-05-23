@@ -1,5 +1,6 @@
 const userService = require('../service/users.service');
 const productsService = require('../service/products.service');
+const ordersService = require('../service//orders.service');
 
 const getAllProducts = async (_request, response, next) => {
   try {
@@ -10,11 +11,11 @@ const getAllProducts = async (_request, response, next) => {
   }
 }
 
-const getPollenBalance = async (_request, response, next) => {
+const login = async (request, response, next) => {
   try {
-    const id = 1;
-    const pollensBalance = await userService.getPollenBalance(id);
-    return response.status(200).json(pollensBalance);
+    const { email, password } = request.body;
+    const userInfo = await userService.requestLogin(email, password);
+    return response.status(200).json(userInfo);
   } catch (error) {
     next(error);
   }
@@ -31,8 +32,19 @@ const updatePollenBalance = async (request, response, next) => {
   }
 };
 
+const getOrdersHistory = async (_request, response, next) => {
+  try {
+    const id = 1;
+    const pollensBalance = await ordersService.findSalesByUserId(id);
+    return response.status(200).json(pollensBalance);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
-  getPollenBalance,
+  login,
   updatePollenBalance,
-  getAllProducts
+  getAllProducts,
+  getOrdersHistory
 };
