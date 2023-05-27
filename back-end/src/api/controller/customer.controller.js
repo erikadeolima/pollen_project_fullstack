@@ -35,8 +35,9 @@ const updatePollenBalance = async (request, response, next) => {
 const getOrdersHistory = async (_request, response, next) => {
   try {
     const id = 1;
-    const pollensBalance = await ordersService.findSalesByUserId(id);
-    return response.status(200).json(pollensBalance);
+    const orderHistoryData = await ordersService.findSalesByUserId(id);
+    const orderHistory = orderHistoryData.map(({ dataValues }) => dataValues);
+    return response.status(200).json(orderHistory);
   } catch (error) {
     next(error);
   }

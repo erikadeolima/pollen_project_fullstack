@@ -1,7 +1,7 @@
 const { Op } = require('sequelize');
 const { User } = require('../../database/models');
 const errorGenerate = require('../helper/errorGenerate');
-const { checkPassword } = require('../helpers/bycrypt');
+const { checkPassword } = require('../helper/bycrypt');
 
 const findUserByName = async (name) => {
   const user = await User.findOne({ where: { name } });
