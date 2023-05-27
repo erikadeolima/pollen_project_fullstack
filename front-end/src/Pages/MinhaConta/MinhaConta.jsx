@@ -6,24 +6,41 @@ import storage from '../../Context/Context';
 import PrimaryButton from '../../Components/PrimaryButton/PrimaryButton';
 import Input from '../../Components/Input/Input';
 import Table from '../../Components/Table/Table';
+import { requestData } from '../../api/requests';
 
 function MinhaConta({ history }) {
     const [pollenBalanceValue, setPollenBalance] = useState(0);
-    const { getUserInfo } = useContext(storage);
+    const { getUserInfo, getOrderHistory, orders } = useContext(storage);
+    const [ordersHistory, setOrdersHistory] = useState([]);
+
+    const requestOrders = async () => {
+        const data = await requestData('/myaccount')
+            .then((data) => {
+                return data
+            });
+        setOrdersHistory(data);
+        return data;
+    };
 
     let navigate = useNavigate();
 
     useEffect(() => {
         const userInfo = getUserInfo();
-        console.log(userInfo)
-        const { pollenBalance } = userInfo;
-        setPollenBalance(pollenBalance);
+        if (userInfo) {
+            navigate('/myaccount');
+            const { pollenBalance } = userInfo;
+            setPollenBalance(pollenBalance);
+            getOrderHistory();
+        } else {
+            navigate('/');
+        }
     }, [pollenBalanceValue, setPollenBalance]);
 
     useEffect(() => {
-        const user = getUserInfo();
-        if (user) {
+        const userInfo = getUserInfo();
+        if (userInfo) {
             navigate('/myaccount');
+            requestOrders();
         } else {
             navigate('/');
         }
@@ -42,9 +59,10 @@ function MinhaConta({ history }) {
                 Veja aqui o seu histórico de pedidos
             </p>
             <br />
-            <Table
+            {ordersHistory && ordersHistory.length > 0 ? <Table
                 page="minha_conta"
-            />
+                orderHistory={ordersHistory}
+            /> : <div></div>}
             <div className='transfira'>
                 <p className='tituloTransfira'>
                     Não vai usar seus pollens? Transfira para outra pessoa! </p>
@@ -76,7 +94,7 @@ function MinhaConta({ history }) {
                         btn="Enviar" />
                 </div>
             </div>
-        </div>
+        </div >
     )
 };
 

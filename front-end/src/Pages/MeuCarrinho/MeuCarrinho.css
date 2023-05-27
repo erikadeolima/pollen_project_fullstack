@@ -9,3 +9,15 @@
 .ProductName {
     font-size: 2em;
 }
+
+.empty_cart_container{
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10em;
+}
+
+.empty_cart{
+    font-size: 34px;
+}

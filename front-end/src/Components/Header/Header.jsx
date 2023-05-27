@@ -18,16 +18,16 @@ function Header() {
             </div>
             <div className='menu-itens'>
                 <Link to="/about" className='removeStyle'>
-                    <p>sobre nós</p>
+                    <p>Sobre Nós</p>
                 </Link>
                 <Link to="/myaccount" className='removeStyle'>
-                    <p>minha conta</p>
+                    <p>Minha Conta</p>
                 </Link>
                 <Link to="/checkout" className='removeStyle'>
-                    <p>meu carrinho</p>
+                    <p>Meu Carrinho</p>
                 </Link>
                 <Link to="/"
-                    onClick={() => localStorage.clear()}
+                    onClick={() => localStorage.removeItem("userInfo")}
                     className='removeStyle'>
                     <p>Logout</p>
                 </Link>

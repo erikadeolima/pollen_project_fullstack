@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MeuCarrinho.css';
 
 import CardCartProduct from '../../Components/CardCartProduct/CardCartProduct';
@@ -11,7 +12,10 @@ function MeuCarrinho() {
     const [modoEntrega, setModoEntrega] = useState('');
     const storageCart = JSON.parse(localStorage.getItem('cart'));
     const [cartItens, setCartItens] = useState(storageCart);
-    const { total, setTotal } = useContext(storage);
+    const { total, setTotal, getUserInfo } = useContext(storage);
+    const [logged, setLogged] = useState(false);
+
+    let navigate = useNavigate();
 
     const handleDesejaReceberEmCasaChange = (e) => {
         const value = e.target.value;
@@ -31,6 +35,15 @@ function MeuCarrinho() {
         }
     }, [cartItens, setTotal, storageCart]);
 
+    useEffect(() => {
+        const userInfo = getUserInfo();
+        if (userInfo) {
+            setLogged(!true);
+        } else {
+            setLogged(!false);
+        }
+    }, [logged]);
+
     let componnent;
     if (modoEntrega === "em_casa") {
         componnent = <FormEntrega />
@@ -41,8 +54,8 @@ function MeuCarrinho() {
     return (
         <div className=' mainContainer'>
             {!cartItens ?
-                <div>
-                    <div>Não Há itens no carrinho</div>
+                <div className='empty_cart_container'>
+                    <div className='empty_cart'>Não há itens no carrinho</div>
                 </div>
                 :
                 <div>
@@ -81,6 +94,7 @@ function MeuCarrinho() {
                     <PrimaryButton
                         btn={`Total: ${total} pollens   -  Finalizar`}
                         title="meu_carrinho"
+                        disable={logged}
                     />
                 </div>
             }

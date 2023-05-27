@@ -8,6 +8,7 @@ function Provider({ children }) {
   const [userName, setUserName] = useState("");
   const [pollenBalance, setPollenBalance] = useState(0);
   const [orderHistory, setOrderHistory] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [cart, setCart] = useState([]);
@@ -17,15 +18,20 @@ function Provider({ children }) {
     return user;
   };
 
-  const getOrderHistory = () => {
-    const orderHistory = userInfo.orderHistory;
-    setOrderHistory(orderHistory);
+  const getOrderHistory = async () => {
+    const orderHistoryArray = userInfo.orderHistory;
+    setOrders(orderHistoryArray);
+
+
+    // const ordersArray = await requestData('/myaccount');
+
   };
 
   const getProducts = async () => {
     const products = await requestData('/home');
     setProducts(products);
   };
+
   const getCartItem = () => {
     const cartItens = JSON.parse(localStorage.getItem('cart'));
     return cartItens;
@@ -79,7 +85,8 @@ function Provider({ children }) {
     setCart,
     newItem,
     getCartItem,
-    setUserInfo
+    setUserInfo,
+    orders
   };
 
   return (
