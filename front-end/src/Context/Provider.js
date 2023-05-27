@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import storage from './Context';
-import userInfo from '../untils/userInfo';
 import { requestData } from '../api/requests';
 
 function Provider({ children }) {
 
   const [userName, setUserName] = useState("");
   const [pollenBalance, setPollenBalance] = useState(0);
-  const [orderHistory, setOrderHistory] = useState([]);
-  const [orders, setOrders] = useState([]);
+  const [ordersHistory, setOrdersHistory] = useState([]);
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [cart, setCart] = useState([]);
@@ -19,12 +17,12 @@ function Provider({ children }) {
   };
 
   const getOrderHistory = async () => {
-    const orderHistoryArray = userInfo.orderHistory;
-    setOrders(orderHistoryArray);
-
-
-    // const ordersArray = await requestData('/myaccount');
-
+    const data = await requestData('/myaccount')
+      .then((data) => {
+        return data
+      });
+    setOrdersHistory(data);
+    return data;
   };
 
   const getProducts = async () => {
@@ -74,7 +72,8 @@ function Provider({ children }) {
   const context = {
     userName,
     pollenBalance,
-    orderHistory,
+    ordersHistory,
+    setOrdersHistory,
     getUserInfo,
     getOrderHistory,
     getProducts,
@@ -86,7 +85,6 @@ function Provider({ children }) {
     newItem,
     getCartItem,
     setUserInfo,
-    orders
   };
 
   return (

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './MeuCarrinho.css';
 
 import CardCartProduct from '../../Components/CardCartProduct/CardCartProduct';
@@ -38,23 +38,23 @@ function MeuCarrinho() {
     useEffect(() => {
         const userInfo = getUserInfo();
         if (userInfo) {
-            setLogged(!true);
+            setLogged(true);
         } else {
-            setLogged(!false);
+            setLogged(false);
         }
     }, [logged]);
 
-    let componnent;
+    let FormEntregaComponnent;
     if (modoEntrega === "em_casa") {
-        componnent = <FormEntrega />
+        FormEntregaComponnent = <FormEntrega />
     } else {
-        componnent = <div></div>
+        FormEntregaComponnent = <div></div>
     };
 
     return (
-        <div className=' mainContainer'>
+        <div className='mainContainer'>
             {!cartItens ?
-                <div className='empty_cart_container'>
+                <div className='warning_text'>
                     <div className='empty_cart'>Não há itens no carrinho</div>
                 </div>
                 :
@@ -72,30 +72,34 @@ function MeuCarrinho() {
                         ))}
                     </div>
                     <Line />
-                    <div className='caixa-selecao'>
-                        <h2>Envio</h2>
-                        <input
-                            type="radio"
-                            name="envio"
-                            value={"no_bees"}
-                            onChange={handleDesejaReceberEmCasaChange}
-                        />
-                        Desejo Retirar no escritório do Bees
-                        <br />
-                        <input
-                            type="radio"
-                            name="envio"
-                            value={"em_casa"}
-                            onChange={handleDesejaReceberEmCasaChange}
-                        />
-                        Desejo Receber em Casa
-                    </div>
-                    {componnent}
-                    <PrimaryButton
-                        btn={`Total: ${total} pollens   -  Finalizar`}
-                        title="meu_carrinho"
-                        disable={logged}
-                    />
+                    {!logged ? <div>
+                        <Link to="/" className='warning_text'>
+                            <h1 className=''>Faça seu loggin para concluir sua compra!</h1>
+                        </Link>
+                    </div> : <div>
+                        <div className='caixa-selecao'>
+                            <h2>Envio</h2>
+                            <input
+                                type="radio"
+                                name="envio"
+                                value={"no_bees"}
+                                onChange={handleDesejaReceberEmCasaChange}
+                            />
+                            Desejo Retirar no escritório do Bees
+                            <br />
+                            <input
+                                type="radio"
+                                name="envio"
+                                value={"em_casa"}
+                                onChange={handleDesejaReceberEmCasaChange}
+                            />
+                            Desejo Receber em Casa
+                        </div>
+                        {FormEntregaComponnent}
+                        <PrimaryButton
+                            btn={`Total: ${total} pollens   -  Finalizar`}
+                            title="meu_carrinho"
+                        /></div>}
                 </div>
             }
         </div >

@@ -10,12 +10,17 @@
     font-size: 2em;
 }
 
-.empty_cart_container{
+.warning_text{
+    text-decoration: none;
     max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 10em;
+    margin: 2em;
+}
+
+.warning_text h1{
+    color: black;
 }
 
 .empty_cart{

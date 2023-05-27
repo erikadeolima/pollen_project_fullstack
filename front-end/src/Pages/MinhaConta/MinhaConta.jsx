@@ -6,21 +6,11 @@ import storage from '../../Context/Context';
 import PrimaryButton from '../../Components/PrimaryButton/PrimaryButton';
 import Input from '../../Components/Input/Input';
 import Table from '../../Components/Table/Table';
-import { requestData } from '../../api/requests';
 
 function MinhaConta({ history }) {
     const [pollenBalanceValue, setPollenBalance] = useState(0);
-    const { getUserInfo, getOrderHistory, orders } = useContext(storage);
-    const [ordersHistory, setOrdersHistory] = useState([]);
+    const { getUserInfo, getOrderHistory, ordersHistory } = useContext(storage);
 
-    const requestOrders = async () => {
-        const data = await requestData('/myaccount')
-            .then((data) => {
-                return data
-            });
-        setOrdersHistory(data);
-        return data;
-    };
 
     let navigate = useNavigate();
 
@@ -34,17 +24,7 @@ function MinhaConta({ history }) {
         } else {
             navigate('/');
         }
-    }, [pollenBalanceValue, setPollenBalance]);
-
-    useEffect(() => {
-        const userInfo = getUserInfo();
-        if (userInfo) {
-            navigate('/myaccount');
-            requestOrders();
-        } else {
-            navigate('/');
-        }
-    }, []);
+    }, [pollenBalanceValue, setPollenBalance, getOrderHistory, getUserInfo]);
 
     return (
         <div className='mainContainer minha_conta'>
