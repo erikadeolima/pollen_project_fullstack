@@ -7,6 +7,7 @@ import storage from "../../Context/Context";
 
 function PrimaryButton(props) {
     const [error, setError] = useState(false);
+    const [update, setUpdate] = useState(false);
     const { pollenBalanceValue, setPollenBalance } = useContext(storage);
 
     const updatePollensBalance = (pollenBalance) => {
@@ -23,6 +24,12 @@ function PrimaryButton(props) {
                         const { pollensDonation, receivingEmail, messageDonation } = props.donationInfo;
                         const newPollenBalance = pollenBalanceValue - pollensDonation;
                         updatePollensBalance(newPollenBalance);
+                        if (updatePollensBalance) {
+                            setUpdate(true);
+                        };
+                        if (update === true) {
+                            alert('Enviado com sucesso!');
+                        };
                     }
                     if (props.title === "meu_carrinho") {
                         alert('Seu pedido estará disponível em até 5 dias.')
