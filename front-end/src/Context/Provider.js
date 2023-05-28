@@ -9,6 +9,10 @@ function Provider({ children }) {
   const [total, setTotal] = useState(0);
   const [cart, setCart] = useState([]);
   const [pollenBalanceValue, setPollenBalance] = useState(0);
+  const [order, setOrder] = useState({});
+  const [deliveryNumber, setDeliveryNumber] = useState(0);
+  const [cepSearch, setCepSearch] = useState(0);
+  const [deliveryInfo, setDeliveryInfo] = useState({ deliveryAddress: '', deliveryNumber: 0 });
 
   const getUserInfo = () => {
     const user = JSON.parse(localStorage.getItem('userInfo'));
@@ -67,7 +71,14 @@ function Provider({ children }) {
     }
   };
 
-
+  const updateDeliveryInfo = () => {
+    setDeliveryInfo(
+      {
+        deliveryAddress: `${cepSearch.logradouro} - ${cepSearch.bairro}, ${cepSearch.localidade} - ${cepSearch.uf}, ${cepSearch.cep}`,
+        deliveryNumber: deliveryNumber
+      }
+    );
+  };
 
   const context = {
     ordersHistory,
@@ -85,7 +96,16 @@ function Provider({ children }) {
     setUserInfo,
     newItem,
     setPollenBalance,
-    pollenBalanceValue
+    pollenBalanceValue,
+    order,
+    setOrder,
+    deliveryInfo,
+    setDeliveryInfo,
+    deliveryNumber,
+    setDeliveryNumber,
+    cepSearch,
+    setCepSearch,
+    updateDeliveryInfo
   };
 
   return (

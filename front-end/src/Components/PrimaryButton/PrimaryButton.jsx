@@ -8,7 +8,7 @@ import storage from "../../Context/Context";
 function PrimaryButton(props) {
     const [error, setError] = useState(false);
     const [update, setUpdate] = useState(false);
-    const { pollenBalanceValue, setPollenBalance } = useContext(storage);
+    const { pollenBalanceValue, setPollenBalance, updateDeliveryInfo, deliveryInfo } = useContext(storage);
 
     const updatePollensBalance = (pollenBalance) => {
         requestUpdate('/myaccount', { pollenBalance })
@@ -32,6 +32,7 @@ function PrimaryButton(props) {
                         };
                     }
                     if (props.title === "meu_carrinho") {
+                        updateDeliveryInfo();
                         alert('Seu pedido estará disponível em até 5 dias.')
                     }
                 }}>{props.btn}</button></Link>

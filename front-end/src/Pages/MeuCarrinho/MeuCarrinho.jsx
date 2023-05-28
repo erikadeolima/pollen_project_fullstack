@@ -80,7 +80,7 @@ function MeuCarrinho() {
                             <input
                                 type="radio"
                                 name="envio"
-                                value={"no_bees"}
+                                value={"Retirada no BEES"}
                                 onChange={handleDesejaReceberEmCasaChange}
                             />
                             Desejo Retirar no escritório do Bees

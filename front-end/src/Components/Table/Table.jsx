@@ -2,6 +2,7 @@ import React from "react";
 import './Table.css';
 
 function Table({ orderHistory }) {
+    console.log(orderHistory)
 
     return (
         <div>
@@ -23,8 +24,8 @@ function Table({ orderHistory }) {
                                     <p key={product.id}>({product.OrdersProducts.quantity}) - {product.name}</p>)
                             })}
                         <p></p>
-                        <td>{order.totalPollens}</td>
-                        <td>{order.status}</td>
+                        <td>{order.totalPollens} pollens</td>
+                        <td>{order.status} - <br />{order.deliveryAddress}</td>
                     </tr>
                 )
                 }</tbody>

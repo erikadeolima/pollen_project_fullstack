@@ -68,3 +68,10 @@
 .menssagem-texto label{
     padding: 20px 30px;
 }
+
+.btn-enviar{
+    width: 100%;
+    display:flex;
+    justify-content:right;
+    padding: 2% 12% 0% 0%;
+}
