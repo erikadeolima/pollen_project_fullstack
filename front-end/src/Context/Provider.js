@@ -4,12 +4,11 @@ import { requestData } from '../api/requests';
 
 function Provider({ children }) {
 
-  const [userName, setUserName] = useState("");
-  const [pollenBalance, setPollenBalance] = useState(0);
   const [ordersHistory, setOrdersHistory] = useState([]);
   const [products, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
   const [cart, setCart] = useState([]);
+  const [pollenBalanceValue, setPollenBalance] = useState(0);
 
   const getUserInfo = () => {
     const user = JSON.parse(localStorage.getItem('userInfo'));
@@ -22,7 +21,6 @@ function Provider({ children }) {
         return data
       });
     setOrdersHistory(data);
-    return data;
   };
 
   const getProducts = async () => {
@@ -51,7 +49,7 @@ function Provider({ children }) {
     if (getCartProducts.length === 0) {
       setCart([item]);
       return saveCartItem([item]);
-    }
+    };
 
     if (itemAlreadySave) {
       getCartProducts.forEach((arrayItem) => {
@@ -69,22 +67,25 @@ function Provider({ children }) {
     }
   };
 
+
+
   const context = {
-    userName,
-    pollenBalance,
     ordersHistory,
     setOrdersHistory,
-    getUserInfo,
-    getOrderHistory,
-    getProducts,
     products,
     total,
     setTotal,
     cart,
     setCart,
-    newItem,
+    getUserInfo,
+    getOrderHistory,
+    getProducts,
     getCartItem,
+    saveCartItem,
     setUserInfo,
+    newItem,
+    setPollenBalance,
+    pollenBalanceValue
   };
 
   return (

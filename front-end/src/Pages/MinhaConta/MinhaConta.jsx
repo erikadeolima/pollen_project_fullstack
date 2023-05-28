@@ -4,12 +4,13 @@ import './MinhaConta.css';
 import Line from '../../Components/Line/Line';
 import storage from '../../Context/Context';
 import PrimaryButton from '../../Components/PrimaryButton/PrimaryButton';
-import Input from '../../Components/Input/Input';
 import Table from '../../Components/Table/Table';
 
-function MinhaConta({ history }) {
-    const [pollenBalanceValue, setPollenBalance] = useState(0);
-    const { getUserInfo, getOrderHistory, ordersHistory } = useContext(storage);
+function MinhaConta() {
+    const [receivingEmail, setReceivingEmail] = useState('');
+    const [pollensDonation, setPollensDonation] = useState(0);
+    const [messageDonation, setMessageDonation] = useState('');
+    const { getUserInfo, getOrderHistory, ordersHistory, pollenBalanceValue, setPollenBalance } = useContext(storage);
 
 
     let navigate = useNavigate();
@@ -24,7 +25,7 @@ function MinhaConta({ history }) {
         } else {
             navigate('/');
         }
-    }, [pollenBalanceValue, setPollenBalance, getOrderHistory, getUserInfo]);
+    }, []);
 
     return (
         <div className='mainContainer minha_conta'>
@@ -51,27 +52,44 @@ function MinhaConta({ history }) {
             <div className='transfer-data'>
                 <div className='emailPresente'>
                     <label htmlFor="emailPresente">Digite o e-mail da pessoa que vai receber os pollens:</label>
-                    <Input
-                        type="e-mail" name="emailPresente" id="emailPresente"
+                    <input
+                        className="inputFormsSm"
+                        type="e-mail"
+                        name="emailPresente"
+                        id="emailPresente"
+                        onChange={(e) => setReceivingEmail(e.target.value)}
+                        value={receivingEmail}
                     />
                 </div>
                 <div className='polensEnviar'>
                     <label htmlFor="quantidadePólens">Quantos pollens deseja enviar?</label>
-                    <Input
-                        type="number" name="quantidadePólens" id="quantidadePólens"
+                    <input
+                        className="inputFormsSm"
+                        type="number"
+                        name="quantidadePólens"
+                        id="quantidadePólens"
+                        onChange={(e) => setPollensDonation(e.target.value)}
+                        value={pollensDonation}
                     />
                 </div>
 
                 <div className='menssagem-texto'>
                     <label htmlFor="mensagem">Deixe uma mensagem de carinho!</label>
-                    <Input
-                        type="textarea" name="mensagem" id="message"
+                    <textarea
+                        className="inputFormsSm"
+                        type="textarea"
+                        name="mensagem"
+                        id="message"
+                        onChange={(e) => setMessageDonation(e.target.value)}
+                        value={messageDonation}
                     />
                 </div>
                 <div className='btn-enviar'>
                     <PrimaryButton
                         title="minha_conta"
-                        btn="Enviar" />
+                        btn="Enviar"
+                        donationInfo={{ pollensDonation, receivingEmail, messageDonation }}
+                    />
                 </div>
             </div>
         </div >

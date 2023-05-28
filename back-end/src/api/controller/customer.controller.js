@@ -24,8 +24,8 @@ const login = async (request, response, next) => {
 const updatePollenBalance = async (request, response, next) => {
   try {
     const id = 1;
-    const { balance } = request.body;
-    const pollensBalance = await userService.updatePollenBalance(id, balance);
+    const { body } = request;
+    const pollensBalance = await userService.updatePollenBalance(id, body);
     return response.status(200).json(pollensBalance);
   } catch (error) {
     next(error);

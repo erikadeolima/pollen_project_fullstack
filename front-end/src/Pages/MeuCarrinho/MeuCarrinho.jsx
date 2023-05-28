@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './MeuCarrinho.css';
 
 import CardCartProduct from '../../Components/CardCartProduct/CardCartProduct';
@@ -14,8 +14,6 @@ function MeuCarrinho() {
     const [cartItens, setCartItens] = useState(storageCart);
     const { total, setTotal, getUserInfo } = useContext(storage);
     const [logged, setLogged] = useState(false);
-
-    let navigate = useNavigate();
 
     const handleDesejaReceberEmCasaChange = (e) => {
         const value = e.target.value;

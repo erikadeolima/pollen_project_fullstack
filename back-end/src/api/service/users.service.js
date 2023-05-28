@@ -20,13 +20,22 @@ const requestLogin = async (email, password) => {
   return { id, name, pollenBalance };
 };
 
-const updatePollenBalance = async (id, balance) => {
-  const newBallance = await User.update({ pollenBalance: balance }, { where: { id } });
-  const userBallance = getPollenBalance(id);
-  if (!newBallance) {
+const getPollenBalance = async (id) => {
+  const user = await User.findOne({ where: { id } });
+  if (!user) {
     throw errorGenerate(404, 'Not found');
   }
-  return userBallance;
+  const { pollenBalance } = user;
+  return pollenBalance;
+}
+
+const updatePollenBalance = async (id, body) => {
+  const newBallance = await User.update(body, { where: { id } });
+  if (!newBallance) {
+    throw errorGenerate(404, 'Not found');
+  };
+  const balance = await getPollenBalance(id);
+  return balance;
 };
 
 module.exports = {
